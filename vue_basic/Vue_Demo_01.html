@@ -12,13 +12,31 @@
 
 <body>
 
+    <!--
+        初识Vue：
+            1.想让Vue工作，必须创建一个Vue实例，且要传入一个配置对象
+            2.root容器里的代码依然符合HTML规范，混入了一些特殊的Vue语法
+            3.root容器里的代码被称为Vue模板
+            4.Vue实例和容器一一对应
+            5.真实开发中只有一个Vue实例，且会配合组件一起使用
+            6.{{xxx}} 中 xxx 写js表达式，且xxx可以自动读取到data中的所有属性
+            7.一旦data中的数据发生改变，那么页面中用到该数据的地方会自动更新
+    -->
+
     <!-- 容器 -->
     <div id="root">
-        <h3>Hello,Vue</h3>
+        <h3>Hello,{{name}}</h3>
     </div>
 
     <script>
-        Vue.config.productionTip = false;
+        Vue.config.productionTip = false;   // 阻止vue启动时生成生产提示
+
+        const app = new Vue({
+            el:'#root',   // el 用于指定当前Vue实例为哪个容器服务
+            data: {       // data 用于存储数据，供el指定的容器去使用
+                name:'Morgan'
+            }
+        });
     </script>
 
 </body>
