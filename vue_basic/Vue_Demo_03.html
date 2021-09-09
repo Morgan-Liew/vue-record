@@ -14,12 +14,23 @@
 
     <script>
 
-        new Vue({
-            el:'#root',
+        const app = new Vue({
+            el:'#root',  // 第一种写法
+            /* 第一种写法 对象式
             data:{
                 name:'Morgan'
+            }*/
+            // 第二种写法 函数式
+            data:function () {
+                console.log(this)  // this 指向Vue实例对象
+                return{
+                    name:'Morgan'
+                }
             }
         })
+        // console.log(app)
+
+        // app.$mount('#root')  // 第二种写法
 
     </script>
 
