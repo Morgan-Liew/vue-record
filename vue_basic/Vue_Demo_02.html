@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vue_Demo_01</title>
+    <title>Vue_Demo_02</title>
     <script src="./js/vue.js"></script>
 </head>
 <body>
@@ -20,8 +20,11 @@
 
 
 <div id="root">
-    <h3>Hello,{{name}}</h3>
+    <h3>Hello,{{name.toUpperCase()}}</h3>
+    <h3>指令语法</h3>
+    <a :href="url">click me</a>
 </div>
+
 
 <script>
     Vue.config.productionTip = false;   // 阻止vue启动时生成生产提示
@@ -29,7 +32,8 @@
     const app = new Vue({
         el:'#root',   // el 用于指定当前Vue实例为哪个容器服务
         data: {       // data 用于存储数据，供el指定的容器去使用
-            name:'Morgan'
+            name:'Morgan',
+            url:'http://www.baidu.com'
         }
     });
 </script>
