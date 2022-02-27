@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue_Demo_06-事件处理</title>
+  <script src="./js/vue.js"></script>
+</head>
+
+<body>
+
+  <!-- 
+      事件的基本使用：
+            1.使用v-on：xxx 或 @xxx 绑定事件，其中xxx事件名
+            2.事件的回调需要配置在methods对象中，最终会在vm上
+            3.methods中配置的函数，不要用箭头函数，否则this指向 Windows 而不是 vm
+            4.methods中配置的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象
+            5.@click=“demo” 和 @click=“demo($event)” 效果一致，但后者可以传参
+
+      Vue中的事件修饰符：
+            1.prevent：阻止默认时间（常用）
+            2.stop：阻止事件冒泡（常用）
+            3.once：事件只触发一次（常用）
+            4.capture：使用事件的捕获模式
+            5.self：只有event.target是当前操作的元素时才触发事件
+            6.passive：时间的默认行为立即执行，无需等待事件回调执行完毕
+
+      Vue中常用的按键别名：
+            回传 => enter
+            删除 => delete
+            退出 => esc
+
+            系统修饰键：ctrl、alt、shift、meta
+              keyup
+              keydown
+            
+            也可以使用keyCode去指定具体按键
+
+            Vue.config.keyCodes.自定义键名 = 键码，可以去定制按键别名
+                      
+   -->
+
+  <!-- 容器 -->
+  <div id="root">
+    <h3>Hello,{{name}}</h3>
+    <a href="www.baidu.com" @click="showInfo(name)">Click me!</a>
+
+    <div @click="showInfo" style="background-color: aquamarine;">
+      <button @click.stop="showInfo('stop' + name)">Click this button</button>
+    </div>
+
+    <input type="text" placeholder="input info" @keydown.ctrl="showInfo">
+  </div>
+
+  <script>
+    Vue.config.productionTip = false;   // 阻止vue启动时生成生产提示
+
+    const app = new Vue({
+      el: '#root',   // el 用于指定当前Vue实例为哪个容器服务
+      data: {       // data 用于存储数据，供el指定的容器去使用
+        name: 'Morgan'
+      },
+      methods: {
+        showInfo(value) {
+          console.log(this)
+          // alert(value)
+          alert(value.target.value)
+        }
+      }
+    });
+  </script>
+
+
+</body>
+
+</html>
